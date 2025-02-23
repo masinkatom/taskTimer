@@ -1,0 +1,43 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cus bus</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <nav>
+                <h1>TaskTimah</h1>
+            </nav>
+            <div class="container">
+                
+                <Transition name="fade">
+                    <div class="task-list" v-if="showTasks">
+                        <div class="task-item" v-for="task in tasks" :class="{ running: task.running }">
+                            <div class="in-row space-between">
+                                <div class="in-column">
+                                    <h2>{{ task.taskName }}</h2>
+                                    <p>Dnes: {{ task.durationToday }} minút</p>
+                                    <p>Celkovo: {{ task.durationTotal }} minút</p>
+                                </div>
+                                <div class="in-column" >
+                                    <button v-if="!task.running" @click="addTime($event, task, 1); toggleRunning(task, true)">Štart</button>
+                                    <button v-if="task.running" @click="task.durationToday--; toggleRunning(task, false)">Stop</button>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </Transition>
+                <button @click="toggleShowTasks()">
+                    <span v-if="showTasks">Skry úlohy!</span>
+                    <span v-if="!showTasks">Ukáž úlohy!</span>
+                </button>
+            </div>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
