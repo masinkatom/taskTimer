@@ -1,35 +1,133 @@
-@import './base.css';
+/* @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap'); */
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+:root {
+    --color-dk-grey: #1f1f1f;
+    --color-lt-grey: #313131;
+    --color-dk-purple: #1e0057;
+    --color-secondary: #4c02d4bb;
+    --color-white: #fffbf5;
+    --color-black: #000000;
+    --color-transparent: #ffffff00;
+    font-size: 10px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+body {
+    color: var(--color-white);
+    background-color: var(--color-dk-grey);
+    font-family: "Doto", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "ROND" 0;
 }
 
-@media (min-width: 1024px) {
-  body {
+p {
+    font-size: 2rem;
+    margin: .7rem 0;
+}
+
+h1 {
+    font-size: 4.2rem;
+    margin: 2rem 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin: 1.5rem 0;
+}
+
+h3 {
+    font-size: 2.2rem;
+    margin: 1.5rem 0;
+}
+
+h4 {
+    font-size: 1.6rem;
+}
+
+nav {
     display: flex;
-    place-items: center;
-  }
+    align-items: center;
+    justify-content: center;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.container {
+    width: 100%;
+    max-width: 110rem;
+    /* aby neprekrocil tuto hodnotu */
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.in-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.in-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.center-vertical {
+    display: flex;
+    justify-content: center;
+}
+
+.center-horizontal {
+    display: flex;
+    align-items: center;
+}
+
+
+input[type=submit],
+input[type=button],
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: dotted;
+    text-decoration: none;
+    cursor: pointer;
+    width: 15rem;
+    height: 7rem;
+    
+    background-color: var(--color-transparent);
+    color: white;
+    font-size: 2.2rem;
+    font-family: "Doto", sans-serif;
+    font-weight: 800;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover,
+button:hover {
+    background-color: var(--color-black);
+    color: white;
+}
+
+/* VUE transitions ----------------------------------- */
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
 }
