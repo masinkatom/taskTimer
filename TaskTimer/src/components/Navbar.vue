@@ -29,7 +29,7 @@ a {
 nav {
     flex-wrap: wrap;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 button {
@@ -46,6 +46,11 @@ img {
 @media (max-width: 500px) {
     h1 {
         font-size: 3.5rem;
+    }
+    nav {
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
     }
 }
 </style>
