@@ -2,7 +2,7 @@
 
     <div>
         <Navbar @add-task="addTask" />
-        <div class="container" v-if="showTasks">
+        <div class="container">
             <TaskList 
                 :tasks="tasks" 
                 @update-task="updateTask"
@@ -20,13 +20,11 @@ import Navbar from '@/components/Navbar.vue';
 import { Task } from '@/types/task';
 import { reactive, ref, computed, onMounted } from 'vue';
 
-let showTasks: boolean = true;
-
 let tasks = ref<Task[]>([
     {
         taskName: 'DummyTask1',
         durationNow: 0,
-        durationTotal: 30,
+        durationTotal: 86300000,
         lastTime: null,
         running: false
     }
@@ -36,26 +34,24 @@ onMounted(() => {
     loadTasksFromStorage();
 })
 
-function toggleShowTasks() {
-    showTasks = !showTasks;
-}
-
 function updateTask(task: Task, start: boolean) {
     if (start) {
         task.running = start;
-        task.lastTime = performance.now();
+        task.lastTime = Date.now();
+        updateTasksInStorage();
     }
     else {
         task.running = start;
-        saveTime(task, performance.now() - task.lastTime);
+        console.log("lastTime: " + task.lastTime);
+        saveTime(task, Date.now() - task.lastTime);
         updateTasksInStorage();
     }
 }
 
 function saveTime(task: Task, duration: number) {
-    duration = Math.floor(duration / 1000);
-    duration = Math.round(duration / 60 * 100) / 100;
-    task.durationTotal += duration;
+    //duration = Math.floor(duration / 1000 / 60);
+    duration = Math.round(duration * 100) / 100;
+    task.durationTotal = Math.round((task.durationTotal + duration)* 100) / 100;
     task.durationNow = duration;
 }
 
@@ -72,7 +68,7 @@ function deleteTask(task: Task) {
 
 function loadTasksFromStorage() {
     const tasksJson: string | null = localStorage.getItem("UserTasks");
-    if (tasksJson) {
+    if (tasksJson && tasksJson !== undefined) {
         tasks.value = JSON.parse(tasksJson);
         console.log(tasks);
     }

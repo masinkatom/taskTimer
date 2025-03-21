@@ -25,12 +25,17 @@ const emits = defineEmits(['update-task', 'delete-task']);
 
 
 <style>
+
+
 .task-item {
     width: 100%;
     display: flex;
     margin: 1rem 0;
     padding: 1rem 1rem;
     background-color: var(--color-lt-grey);
+    border: 1px dotted;
+    
+    border-radius: 5px;
     transition: box-shadow 300ms;
 }
 
